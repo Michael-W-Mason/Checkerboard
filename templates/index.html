@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Checkerboard</title>
+</head>
+<body>
+    <style>
+        .block1{
+            background-color: {{ color1 }};
+        }
+        .block2{
+            background-color: {{ color2 }};
+        }
+        .board{
+            grid-template-columns: repeat({{ col }}, 1fr);
+            grid-template-rows: repeat({{ row }}, 1fr);
+        }
+    </style>
+    <div class="container">
+        <h1>Checkerboard</h1>
+        <div class="board">
+            {% for rows in range(row) %}
+                {% for cols in range(col)%}
+                    {% if (cols + rows) % 2 == 0 %}
+                        <div class="block1"></div>
+                    {% else %}
+                        <div class="block2"></div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
